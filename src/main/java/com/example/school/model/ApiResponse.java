@@ -16,6 +16,8 @@ public class ApiResponse {
     private List<String> errors;
     private List<Student> students;
     private Student student;
+    private String token = null;
+    private Long validTime = null;
     @JsonIgnore
     private HttpStatus status = HttpStatus.OK;
 
@@ -57,6 +59,22 @@ public class ApiResponse {
 
     public void setStatus(HttpStatus status) {
         this.status = status;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public Long getValidTime() {
+        return validTime;
+    }
+
+    public void setValidTime(Long validTime) {
+        this.validTime = validTime;
     }
 
     public void addError(String error) {
