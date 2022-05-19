@@ -18,14 +18,16 @@ public class TeacherService {
     private TeacherRepository tTeacherRepository;
     private static TeacherRepository teacherRepository;
 
-    public static void hazCosas() {
-        Teacher teacher = new Teacher();
-        teacher.setUsername("teacher1");
-        teacher.setPassword(BCrypt.hashpw("password1", BCrypt.gensalt()));
-
+    public static void saveTeacher(Teacher teacher) {
         teacherRepository.save(teacher);
     }
 
+    /**
+     * If the teacher is present, return the teacher, otherwise return null
+     *
+     * @param name The name of the teacher to be retrieved.
+     * @return A Teacher object
+     */
     public static Teacher getTeacherByName(String name) {
         Teacher teacher = null;
 

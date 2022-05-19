@@ -41,6 +41,13 @@ public class LoginService {
 
 
 
+    /**
+     * If the user exists, check if the password matches the hashed password in the database. If it does, generate a token
+     * and return it. If it doesn't, return an error
+     *
+     * @param login The login object that contains the username and password.
+     * @return LoginResponse
+     */
     public static LoginResponse authUser(Login login) {
         LoginResponse loginResponse = new LoginResponse();
         Teacher teacher = TeacherService.getTeacherByName(login.getUsername());
@@ -62,6 +69,13 @@ public class LoginService {
         return loginResponse;
     }
 
+    /**
+     * It creates a token with the username of the teacher, the authorities of the teacher, the time of creation and the
+     * expiration time
+     *
+     * @param teacher the teacher object that is returned from the database
+     * @return A token and the time it is valid for.
+     */
     private static LoginResponse getToken(Teacher teacher) {
         LoginResponse response = new LoginResponse();
 

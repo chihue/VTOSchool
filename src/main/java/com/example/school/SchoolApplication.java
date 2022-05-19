@@ -21,22 +21,22 @@ public class SchoolApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        TeacherService.hazCosas();
+
+        //Create test data
+        //MockData.CreateMockData();
     }
 
     @EnableWebSecurity
     @Configuration
     class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             http.csrf().disable()
                     .addFilterAfter(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class)
                     .authorizeRequests()
                     .antMatchers(HttpMethod.POST, "/api/login").permitAll()
-                    .antMatchers(HttpMethod.GET, "/api/teachers").permitAll()
+                    .antMatchers(HttpMethod.GET, "/api/**").permitAll()
                     .anyRequest().authenticated();
-
         }
     }
 }
